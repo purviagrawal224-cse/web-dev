@@ -87,7 +87,7 @@
 
         <p>🎉 Your Secret Link:</p>
 
-        <p id="shareLink"></p>
+        <a id="shareLink" href="#" target="_blank"></a>
 
         <button onclick="copyLink()">
             📋 Copy Link
@@ -136,8 +136,10 @@ function createLink() {
         encodedData;
 
 
-    document.getElementById("shareLink").innerText =
-        link;
+    let shareLink = document.getElementById("shareLink");
+
+shareLink.href = link;
+shareLink.innerText = link;
 
     document.getElementById("linkBox").style.display =
         "block";
