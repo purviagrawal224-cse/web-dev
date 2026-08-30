@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>New Secret Message</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+
+            background: #eadcff;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+        }
+
+        .box {
+
+            background: white;
+
+            width: 400px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            border-radius: 20px;
+
+            box-shadow: 0 5px 20px gray;
+        }
+
+        input {
+
+            width: 90%;
+
+            padding: 13px;
+
+            font-size: 18px;
+
+            border-radius: 10px;
+
+            border: 1px solid gray;
+
+            margin: 15px 0;
+        }
+
+        button {
+
+            padding: 12px 30px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #c77dff;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        #secretMessage {
+
+            display: none;
+
+            margin-top: 20px;
+
+            background: #fff0f7;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            line-height: 1.6;
+        }
+
+        #error {
+
+            color: red;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+    <div id="login">
+
+        <h1>💌 New Message!</h1>
+
+        <p>
+            Someone has sent you a secret message.
+        </p>
+
+        <h3>🔐 Enter Password</h3>
+
+        <input
+            type="text"
+            id="password"
+            placeholder="Enter Password">
+
+        <br>
+
+        <button onclick="unlock()">
+            🔓 Unlock Message
+        </button>
+
+        <p id="error"></p>
+
+    </div>
+
+
+    <div id="secretMessage">
+
+        <h1>💌 Message Unlocked!</h1>
+
+        <p id="messageText"></p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function unlock() {
+
+    let enteredPassword =
+        document.getElementById("password").value;
+
+
+    let urlParams =
+        new URLSearchParams(window.location.search);
+
+
+    let encodedData =
+        urlParams.get("data");
+
+
+    if (!encodedData) {
+
+        document.getElementById("error").innerText =
+            "❌ Invalid message link.";
+
+        return;
+
+    }
+
+
+    let data =
+        JSON.parse(
+            decodeURIComponent(
+                escape(atob(encodedData))
+            )
+        );
+
+
+    if (enteredPassword === data.password) {
+
+        document.getElementById("login").style.display =
+            "none";
+
+
+        document.getElementById("secretMessage").style.display =
+            "block";
+
+
+        document.getElementById("messageText").innerText =
+            data.message;
+
+    }
+
+    else {
+
+        document.getElementById("error").innerText =
+            "❌ Wrong Password!";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+</html>
