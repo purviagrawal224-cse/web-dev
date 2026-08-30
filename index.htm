@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Secret Message</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f8dce8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            width: 400px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px gray;
+        }
+
+        textarea {
+            width: 90%;
+            height: 120px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 17px;
+            border-radius: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #c77dff;
+            color: white;
+            cursor: pointer;
+        }
+
+        #linkBox {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #shareLink {
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>💌 Create Secret Message</h1>
+
+    <p>Write your message</p>
+
+    <textarea id="message"
+        placeholder="Write your secret message here..."></textarea>
+
+    <p>Set Emoji Password</p>
+
+    <input
+        type="text"
+        id="password"
+        placeholder="Enter Password">
+
+    <br>
+
+    <button onclick="createLink()">
+        🔒 Create Secret Link
+    </button>
+
+    <div id="linkBox">
+
+        <p>🎉 Your Secret Link:</p>
+
+        <p id="shareLink"></p>
+
+        <button onclick="copyLink()">
+            📋 Copy Link
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function createLink() {
+
+    let message =
+        document.getElementById("message").value;
+
+    let password =
+        document.getElementById("password").value;
+
+    if (message === "" || password === "") {
+
+        alert("Please enter message and password!");
+
+        return;
+    }
+
+
+    let data = {
+
+        message: message,
+
+        password: password
+
+    };
+
+
+    let encodedData =
+        btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+
+
+    let link =
+        window.location.origin +
+        window.location.pathname.replace("index.html", "") +
+        "message.html?data=" +
+        encodedData;
+
+
+    document.getElementById("shareLink").innerText =
+        link;
+
+    document.getElementById("linkBox").style.display =
+        "block";
+}
+
+
+function copyLink() {
+
+    let link =
+        document.getElementById("shareLink").innerText;
+
+    navigator.clipboard.writeText(link);
+
+    alert("✅ Link copied!");
+
+}
+
+</script>
+
+</body>
+</html>
