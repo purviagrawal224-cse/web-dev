@@ -1,0 +1,150 @@
+*{
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+html,body{
+  height: 100%;
+width: 100%;
+overflow-x: hidden;
+}
+
+header{
+    height: 10%;
+    top:0;
+    padding:20px;
+width: 100%;
+position: fixed;
+display: flex;
+align-items: center;
+justify-content: space-between;
+ margin: 0px;
+padding: 0%; 
+background-color: white;
+flex-wrap: wrap;
+}
+
+#header-first{
+    font-weight: bold;
+    font-size: 40px;
+}
+header select{
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+main{
+    display: flex;
+    overflow-x:scroll ;
+}  
+
+@media screen and (max-width: 800px) {
+    header {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    #header-first {
+        font-size: 28px;
+    }
+
+    header select {
+        width: 200px;
+        max-width: 100%;
+    }
+
+    header input {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    #header-last {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    center img,
+    body > img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        padding: 10px;
+        overflow-x: hidden;
+    }
+
+    main img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* MOBILE - 400px AND BELOW */
+@media screen and (max-width: 400px) {
+    header {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        box-sizing: border-box;
+        gap: 10px;
+    }
+
+    #header-first {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    header select,
+    header input,
+    header button {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    header input {
+        height: 40px;
+        font-size: 12px;
+    }
+
+    #header-last {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    center img,
+    body > img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        padding: 8px;
+        overflow-x: hidden;
+    }
+
+    main img {
+        width: 100%;
+        height: auto;
+    }
+}
